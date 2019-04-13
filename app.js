@@ -49,14 +49,14 @@ const stepsRandom = steps => {
   return steps.join('')
 }
 
-const stepsGenerate = () => {
-  let i = 6,
-    routes = [],
+const stepsGenerate = currentRoutes => {
+  let routes = [],
     steps
 
-  while (i--) {
+  while (routes.length !== 6) {
     steps = stepsRandom('ABCD')
-    if (!routes.includes(steps)) routes.push(steps)
+    if (!routes.includes(steps) && !currentRoutes.includes(steps))
+      routes.push(steps)
   }
 
   return routes
@@ -64,7 +64,24 @@ const stepsGenerate = () => {
 
 const main = () => {
   let steps = 'ABCD',
-    min = stepsCount(steps)
+    min = steps
+
+  while (1) {
+    console.log(`\ncurrent state = ${steps} [${stepsCount(steps)}]`)
+
+    console.log(`next steps = `)
+    routes = stepsGenerate([steps])
+    routes.forEach(r => {
+      console.log(` ${r} [${stepsCount(r)}]`)
+      if (stepsCount(r) < stepsCount(steps)) min = r
+    })
+
+    if (stepsCount(min) >= stepsCount(steps)) break
+
+    steps = min
+  }
+
+  console.log('\nroutes search end')
 }
 
 main()
