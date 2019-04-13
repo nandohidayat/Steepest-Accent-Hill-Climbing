@@ -1,4 +1,4 @@
-const route = {
+const routes = {
   A: {
     B: 8,
     C: 3,
@@ -28,7 +28,7 @@ const stepCount = steps => {
   steps = steps.split('')
 
   while (i--) {
-    sum += route[steps[i]][steps[i + 1]]
+    sum += routes[steps[i]][steps[i + 1]]
   }
 
   return sum
@@ -53,5 +53,5 @@ const stepRandom = steps => {
 
 const stepGenerate = () => {}
 
-console.log(routeCount('ABCD'))
-console.log(randomStep('ABCD'))
+console.log(stepCount('ABCD'))
+console.log(stepRandom('ABCD'))
