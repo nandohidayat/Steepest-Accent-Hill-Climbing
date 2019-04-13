@@ -65,12 +65,13 @@ const stepsGenerate = currentRoutes => {
 const main = () => {
   let steps = 'ABCD',
     min = steps,
+    i = 0,
     output = '',
-    btnst = '<button class="btn btn-primary mx-3 my-5" disabled>',
-    btnsh = '<button class="btn btn-warning mx-3 my-5" disabled>',
+    btnst = '<button class="btn btn-primary mx-3 my-5" disabled ',
+    btnsh = '<button class="btn btn-warning mx-3 my-5" disabled ',
     btnen = '</button>'
 
-  output += `${btnsh}${min} <span class="badge badge-light">${stepsCount(
+  output += `${btnsh}id="sh0">${min} <span class="badge badge-light">${stepsCount(
     min
   )}</span>${btnen}`
 
@@ -83,19 +84,24 @@ const main = () => {
     })
 
     routes.forEach(r => {
+      i++
       output += `${
-        r === min ? btnsh : btnst
-      }${r} <span class="badge badge-light">${stepsCount(r)}</span>${btnen}`
+        r === min ? btnsh + 'id="sh' : btnst + 'id=el'
+      }${i}">${r} <span class="badge badge-light">${stepsCount(
+        r
+      )}</span>${btnen}`
     })
+
+    output += '</div>'
 
     if (stepsCount(min) >= stepsCount(steps)) break
 
     steps = min
-
-    output += '</div>'
   }
 
   $('#main').html(output)
+
+  $('#sh0').connections({ to: 'el1' })
 }
 
 main()
