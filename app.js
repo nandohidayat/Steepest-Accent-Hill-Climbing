@@ -1,4 +1,4 @@
-const routes = {
+const stepsOption = {
   A: {
     B: 8,
     C: 3,
@@ -21,20 +21,18 @@ const routes = {
   }
 }
 
-const stepCount = steps => {
+const stepsCount = steps => {
   let sum = 0,
     i = steps.length - 1
 
-  steps = steps.split('')
-
   while (i--) {
-    sum += routes[steps[i]][steps[i + 1]]
+    sum += stepsOption[steps[i]][steps[i + 1]]
   }
 
   return sum
 }
 
-const stepRandom = steps => {
+const stepsRandom = steps => {
   let i = steps.length,
     j,
     temp
@@ -42,7 +40,7 @@ const stepRandom = steps => {
   steps = steps.split('')
 
   while (i--) {
-    j = Math.floor(Math.random() * i)
+    j = Math.floor(Math.random() * (i + 1))
     temp = steps[i]
     steps[i] = steps[j]
     steps[j] = temp
@@ -51,7 +49,22 @@ const stepRandom = steps => {
   return steps.join('')
 }
 
-const stepGenerate = () => {}
+const stepsGenerate = () => {
+  let i = 6,
+    routes = [],
+    steps
 
-console.log(stepCount('ABCD'))
-console.log(stepRandom('ABCD'))
+  while (i--) {
+    steps = stepsRandom('ABCD')
+    if (!routes.includes(steps)) routes.push(steps)
+  }
+
+  return routes
+}
+
+const main = () => {
+  let steps = 'ABCD',
+    min = stepsCount(steps)
+}
+
+main()
