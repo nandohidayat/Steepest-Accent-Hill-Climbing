@@ -80,7 +80,7 @@ const main = () => {
 
     routes = stepsGenerate([steps])
     routes.forEach(r => {
-      if (stepsCount(r) < stepsCount(steps)) min = r
+      if (stepsCount(r) < stepsCount(min)) min = r
     })
 
     routes.forEach(r => {
