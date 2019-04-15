@@ -100,8 +100,6 @@ const main = () => {
   }
 
   $('#main').html(output)
-
-  $('#sh0').connections({ to: 'el1' })
 }
 
 main()
