@@ -70,7 +70,7 @@ const main = () => {
     console.log(`\ncurrent state = ${steps} [${stepsCount(steps)}]`)
 
     console.log(`next steps = `)
-    routes = stepsGenerate([steps])
+    routes = stepsGenerate(routes !== null ? routes : [min])
     routes.forEach(r => {
       console.log(` ${r} [${stepsCount(r)}]`)
       if (stepsCount(r) < stepsCount(min)) min = r
