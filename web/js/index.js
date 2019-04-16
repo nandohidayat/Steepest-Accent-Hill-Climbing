@@ -66,6 +66,7 @@ const main = () => {
   let steps = 'ABCD',
     min = steps,
     i = 0,
+    routes = null,
     output = '',
     btnst = '<button class="btn btn-primary mx-3 my-5" disabled ',
     btnsh = '<button class="btn btn-warning mx-3 my-5" disabled ',
@@ -78,7 +79,7 @@ const main = () => {
   while (1) {
     output += '<div>'
 
-    routes = stepsGenerate([steps])
+    routes = stepsGenerate(routes !== null ? routes : [min])
     routes.forEach(r => {
       if (stepsCount(r) < stepsCount(min)) min = r
     })
