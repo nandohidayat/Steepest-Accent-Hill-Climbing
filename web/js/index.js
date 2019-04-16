@@ -21,6 +21,14 @@ const stepsOption = {
   }
 }
 
+const fac = num => {
+  let sum = 1
+  while (num--) {
+    sum *= num + 1
+  }
+  return sum
+}
+
 const stepsCount = steps => {
   let sum = 0,
     i = steps.length - 1
@@ -51,9 +59,9 @@ const stepsRandom = steps => {
 
 const stepsGenerate = currentRoutes => {
   let routes = [],
+    size = Object.keys(stepsOption).length,
     steps
-
-  while (routes.length !== 6) {
+  while (routes.length !== fac(size) / (fac(2) * fac(size - 2))) {
     steps = stepsRandom('ABCD')
     if (!routes.includes(steps) && !currentRoutes.includes(steps))
       routes.push(steps)
