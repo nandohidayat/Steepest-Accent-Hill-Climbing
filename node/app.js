@@ -73,7 +73,7 @@ const main = () => {
     routes = stepsGenerate([steps])
     routes.forEach(r => {
       console.log(` ${r} [${stepsCount(r)}]`)
-      if (stepsCount(r) < stepsCount(steps)) min = r
+      if (stepsCount(r) < stepsCount(min)) min = r
     })
 
     if (stepsCount(min) >= stepsCount(steps)) break
